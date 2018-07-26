@@ -5,6 +5,12 @@ pipeline {
       agent any
       steps {
         echo 'Build It'
+        waitUntil()
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sleep 30
       }
     }
   }
