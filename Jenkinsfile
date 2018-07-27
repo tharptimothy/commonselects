@@ -2,18 +2,23 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      agent any
-      steps {
-        echo 'Build It'
-        waitUntil() {
-          input 'Depoly'
+      parallel {
+        stage('Build') {
+          agent any
+          steps {
+            echo 'Build It'
+          }
         }
-
+        stage('Upload to Archive') {
+          steps {
+            echo 'Uploading To Archive'
+          }
+        }
       }
     }
     stage('Deploy') {
       steps {
-        sleep 30
+        input(message: 'Deploy To Dev', id: '1', ok: '1')
       }
     }
   }
