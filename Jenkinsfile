@@ -5,7 +5,10 @@ pipeline {
       agent any
       steps {
         echo 'Build It'
-        waitUntil()
+        waitUntil() {
+          input 'Depoly'
+        }
+
       }
     }
     stage('Deploy') {
