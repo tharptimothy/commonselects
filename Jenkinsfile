@@ -4,9 +4,13 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        echo 'Build It'
-        sshagent()
+        sleep 2
       }
     }
+  }
+  environment {
+    Development = 'Dev'
+    Production = 'Prod'
+    Staging = 'QC'
   }
 }
